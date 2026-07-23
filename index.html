@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: A4;
+    margin: 15mm 12mm 15mm 12mm;
+    background-color: #ffffff;
+    @bottom-right {
+      content: counter(page);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 9pt;
+      font-weight: bold;
+      color: #333;
+    }
+    @bottom-left {
+      content: "Modul Belajar Praktis Seni Rupa SMP/MTs Kelas VIII Semester 1";
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 8pt;
+      color: #666;
+      font-style: italic;
+    }
+  }
+
+  @page:first {
+    margin: 0;
+    @bottom-right { content: none; }
+    @bottom-left { content: none; }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 9.5pt;
+    line-height: 1.45;
+    color: #111111;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-top: 0;
+  }
+
+  .cover {
+    width: 210mm;
+    height: 297mm;
+    background: linear-gradient(135deg, #ffffff 0%, #f4f6f9 100%);
+    position: relative;
+    page-break-after: always;
+    overflow: hidden;
+  }
+
+  .cover-header {
+    background: #008080;
+    color: white;
+    padding: 20px 25px;
+    display: table;
+    width: 100%;
+  }
+
+  .cover-header-left {
+    display: table-cell;
+    vertical-align: middle;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: bold;
+  }
+
+  .cover-header-right {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+
+  .badge-kurikulum {
+    background-color: #418ab3;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9pt;
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  .cover-title-area { padding: 30px 25px 10px 25px; }
+
+  .sub-title-top {
+    font-size: 12pt;
+    color: #555;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .main-title {
+    font-size: 38pt;
+    font-weight: 900;
+    color: #1a5e42;
+    margin: 0;
+    line-height: 1.1;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .main-subtitle {
+    font-size: 15pt;
+    font-weight: bold;
+    color: #d3381c;
+    margin-top: 8px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .cover-body {
+    padding: 20px 25px;
+    display: table;
+    width: 100%;
+  }
+
+  .cover-left-col {
+    display: table-cell;
+    width: 35%;
+    vertical-align: top;
+    padding-right: 15px;
+  }
+
+  .cover-right-col {
+    display: table-cell;
+    width: 65%;
+    vertical-align: top;
+  }
+
+  .feature-box {
+    background-color: #5d2b7d;
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .feature-box h4 {
+    color: #ffeb3b;
+    margin-bottom: 8px;
+    font-size: 10pt;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 4px;
+  }
+
+  .feature-box ul {
+    margin: 0;
+    padding-left: 15px;
+    font-size: 8.5pt;
+    line-height: 1.5;
+  }
+
+  .hots-badge {
+    color: #ffeb3b;
+    font-weight: bold;
+    font-size: 11pt;
+    margin-top: 10px;
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    border-top: 2px solid #1a5e42;
+    padding-top: 10px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    color: #1a5e42;
+    font-size: 12pt;
+  }
+
+  .page-header {
+    border-bottom: 2px solid #008080;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+
+  .page-title {
+    font-size: 18pt;
+    color: #008080;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .toc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9pt;
+  }
+
+  .toc-table td { padding: 4px 2px; vertical-align: bottom; }
+  .toc-dots { border-bottom: 1px dotted #888; }
+  .toc-page { text-align: right; font-weight: bold; width: 30px; }
+  .toc-section-head { font-weight: bold; color: #008080; padding-top: 10px !important; }
+
+  .atp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+    font-size: 8.5pt;
+  }
+
+  .atp-table th, .atp-table td {
+    border: 1px solid #a0a0a0;
+    padding: 6px 8px;
+    vertical-align: top;
+  }
+
+  .atp-table th {
+    background-color: #008080;
+    color: white;
+    text-align: center;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .bab-banner {
+    display: table;
+    width: 100%;
+    background-color: #f2f2f2;
+    border-left: 6px solid #008080;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+  }
+
+  .bab-number {
+    display: table-cell;
+    width: 90px;
+    font-size: 22pt;
+    font-weight: bold;
+    color: #008080;
+    vertical-align: middle;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .bab-title {
+    display: table-cell;
+    font-size: 20pt;
+    font-weight: bold;
+    color: #222;
+    vertical-align: middle;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .box-container { display: table; width: 100%; margin-bottom: 15px; }
+  .box-left { display: table-cell; width: 65%; padding-right: 12px; vertical-align: top; }
+  .box-right { display: table-cell; width: 35%; vertical-align: top; }
+
+  .section-box {
+    background: #f8f9fa;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+  }
+
+  .section-box-title {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    background: #008080;
+    color: white;
+    padding: 3px 8px;
+    margin: -10px -12px 8px -12px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .pemantik-box {
+    background: #eef6f8;
+    border: 2px solid #008080;
+    border-radius: 6px;
+    padding: 12px;
+  }
+
+  .pemantik-header {
+    background: #008080;
+    color: white;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    padding: 4px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+
+  .heading-a {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #008080;
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+
+  .sub-heading {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #222;
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+
+  .diagram-container {
+    text-align: center;
+    margin: 15px 0;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  p { margin-top: 0; margin-bottom: 8px; text-align: justify; }
+  .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="cover-header">
+    <div class="cover-header-left">Tim Penyusun</div>
+    <div class="cover-header-right"><span class="badge-kurikulum">Kurikulum Merdeka</span></div>
+  </div>
+  <div class="cover-title-area">
+    <div class="sub-title-top">Modul Belajar Praktis</div>
+    <h1 class="main-title">Seni Rupa</h1>
+    <div class="main-subtitle">Untuk SMP/MTs Kelas VIII Semester 1</div>
+  </div>
+  <div class="cover-body">
+    <div class="cover-left-col">
+      <div class="feature-box">
+        <h4>Dilengkapi:</h4>
+        <ul>
+          <li>Asesmen Diagnostik</li>
+          <li>Penguatan Literasi</li>
+          <li>Pendalaman Materi</li>
+          <li>Pemahaman Mendalam</li>
+          <li>Aktivitas</li>
+          <li>Asesmen Formatif</li>
+          <li>Asesmen Sumatif</li>
+        </ul>
+        <div class="hots-badge">Soal HOTS</div>
+      </div>
+    </div>
+  </div>
+  <div class="cover-footer">Viva Pakarindo</div>
+</div>
+
+<!-- DAFTAR ISI -->
+<div class="page-break"></div>
+<div class="page-header"><h2 class="page-title">Daftar Isi</h2></div>
+<table class="toc-table">
+  <tr><td><strong>Kata Pengantar</strong></td><td class="toc-dots"></td><td class="toc-page">2</td></tr>
+  <tr><td><strong>Daftar Isi</strong></td><td class="toc-dots"></td><td class="toc-page">3</td></tr>
+  <tr><td><strong>Alur Tujuan Pembelajaran</strong></td><td class="toc-dots"></td><td class="toc-page">4</td></tr>
+  <tr><td class="toc-section-head" colspan="3">Bab 1 Menggambar</td></tr>
+  <tr><td style="padding-left: 15px;">Asesmen Diagnostik</td><td class="toc-dots"></td><td class="toc-page">5</td></tr>
+  <tr><td style="padding-left: 15px;">A. Menggambar dengan Teknik Perspektif Satu Titik Hilang</td><td class="toc-dots"></td><td class="toc-page">6</td></tr>
+</table>
+
+<!-- BAB 1 -->
+<div class="page-break"></div>
+<div class="bab-banner">
+  <div class="bab-number">Bab 1</div>
+  <div class="bab-title">Menggambar</div>
+</div>
+
+<div class="heading-a">A. Menggambar dengan Teknik Perspektif Satu Titik Hilang</div>
+<p>Menggambar adalah cara seseorang untuk menuangkan ide, perasaan, serta imajinasi ke dalam bentuk visual dua dimensi melalui goresan sebuah garis dan permainan warna...</p>
+
+</body>
+</html>
+Pakai Html, css, js terpisah aja jgn py
+
+Tentu, berikut struktur kode yang dipisah menjadi file HTML, CSS, dan JavaScript secara terpisah tanpa menggunakan Python.
+
+1. index.html
+HTML icon
+index
+ HTML 
+Open
+HTML
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web App</title>
+    <!-- Menghubungkan File CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sistem Simulasi Web</h1>
+        <p>Struktur file terpisah: HTML, CSS, dan JS.</p>
+        <button id="mainBtn">Klik Saya</button>
+        <div id="output"></div>
+    </div>
+
+    <!-- Menghubungkan File JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+2. style.css
+CSS icon
+style
+ CSS 
+Open
+CSS
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #1a73e8;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: #5f6368;
+}
+
+button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #1557b0;
+}
+
+#output {
+    margin-top: 1.5rem;
+    font-weight: bold;
+    color: #2e7d32;
+}
+3. script.js
+JS icon
+script
+ JS 
+Open
+JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('mainBtn');
+    const output = document.getElementById('output');
+
+    button.addEventListener('click', () => {
+        output.textContent = 'Aplikasi berhasil dijalankan dengan kode terpisah!';
+    });
+});
+Buatkan e-book nya harus semirip mungkin dan pakai code terpisah html, css, js
+
+Berikut adalah berkas e-book interaktif Modul Belajar Praktis Seni Rupa SMP/MTs Kelas VIII Semester 1 yang telah disesuaikan dengan seluruh isi teks, struktur, dan tata letak dari gambar-gambar buku yang Anda unggah.
+
+Kode dibuat secara terpisah ke dalam 3 berkas terstruktur: index.html, style.css, dan script.js.
+
+Berkas Tergenerasi
+HTML: 
+HTML icon
+index
+ HTML 
+Open
+
+CSS: 
+CSS icon
+style
+ CSS 
+Open
+
+JS: 
+JS icon
+script
+ JS 
+Open
+
+Fitur E-Book Interaktif yang Dibuat:
+Penerjemahan Teks & Tata Letak Presisi:
+
+Cover Utama: Desain header Kurikulum Merdeka, daftar fitur, dan badge Pembelajaran Mendalam.
+
+Kata Pengantar: Transkripsi lengkap seluruh paragraf dan poin fitur pendukung buku.
+
+Daftar Isi: Format tabel rapi dengan titik-titik pembatas (leader dots) menuju nomor halaman.
+
+Alur Tujuan Pembelajaran: Tabel detail berdasarkan matriks Capaian Pembelajaran (CP) dan Tujuan Pembelajaran (TP).
+
+Bab 1 & Asesmen: Menyajikan Tujuan Pembelajaran, Profil Lulusan, Kata Kunci, Asesmen Diagnostik (Kognitif & Nonkognitif), serta Penguatan Literasi.
+
+Materi Perspektif 1 Titik Hilang: Menyajikan definisi, pendapat para ahli (Jalaluddin Rakhmat, James L. Gibson, Stephen R. Covey, dll.), kaidah & hukum perspektif, garis horizon (TL), serta penjelasan gambar rel kereta api.
+
+Sistem Navigasi & Interaktivitas:
+
+Sidebar / Daftar Isi: Anda dapat mengeklik bab/halaman mana saja di sidebar untuk berpindah secara langsung.
+
+Tombol Navigasi: Tersedia tombol ‹ Sebelumnya dan Selanjutnya › di bagian atas header beserta indikator posisi halaman (Halaman X / 7).
+
+Responsif: Tampilan dapat menyesuaikan ukuran layar laptop, tablet, maupun ponsel secara fleksibel.
+
+Cara Menggunakan Berkas
+Unduh ketiga berkas di atas (index.html, style.css, dan script.js).
+
+Simpan ketiga berkas tersebut ke dalam satu folder yang sama.
+
+Buka berkas index.html menggunakan browser pilihan Anda (Google Chrome, Mozilla Firefox, Microsoft Edge, dll.).
+
+
+
+
+Gemini is AI and can make mistakes.
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Book Modul Belajar Praktis Seni Rupa SMP/MTs Kelas VIII Semester 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-header">
+        <div class="header-title">E-Book Digital: Modul Belajar Praktis Seni Rupa</div>
+        <div class="header-controls">
+            <button id="prevBtn" class="nav-btn">‹ Sebelumnya</button>
+            <span id="pageIndicator" class="page-indicator">Halaman 1 / 7</span>
+            <button id="nextBtn" class="nav-btn">Selanjutnya ›</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Sidebar Navigation / Table of Contents -->
+        <div class="sidebar">
+            <h3>Daftar Isi</h3>
+            <ul id="tocList">
+                <li data-page="1" class="toc-item active">Cover Buku</li>
+                <li data-page="2" class="toc-item">Kata Pengantar</li>
+                <li data-page="3" class="toc-item">Daftar Isi</li>
+                <li data-page="4" class="toc-item">Alur Tujuan Pembelajaran</li>
+                <li data-page="5" class="toc-item">Bab 1: Menggambar (Tujuan & Asesmen)</li>
+                <li data-page="6" class="toc-item">A. Menggambar Perspektif Satu Titik Hilang</li>
+                <li data-page="7" class="toc-item">Kaidah & Gambar Perspektif 1 Titik Hilang</li>
+            </ul>
+        </div>
+
+        <!-- Book Content Viewer -->
+        <div class="book-viewer">
+            <!-- PAGE 1: COVER -->
+            <div id="page-1" class="page-content active">
+                <div class="book-cover">
+                    <div class="cover-top-bar">
+                        <span class="author">Tim Penyusun</span>
+                        <div class="kurikulum-badge">
+                            <strong>Kurikulum</strong><br>Merdeka
+                        </div>
+                    </div>
+                    
+                    <div class="cover-main-title">
+                        <p class="subtitle">Modul Belajar Praktis</p>
+                        <h1 class="main-title">Seni Rupa</h1>
+                        <h2 class="grade-title">Untuk SMP/MTs Kelas VIII Semester 1</h2>
+                    </div>
+
+                    <div class="cover-body">
+                        <div class="cover-sidebar-badge">
+                            <span class="badge-text">Pembelajaran Mendalam</span>
+                        </div>
+
+                        <div class="cover-features">
+                            <p class="features-header">Dilengkapi:</p>
+                            <ul>
+                                <li>Asesmen Diagnostik</li>
+                                <li>Penguatan Literasi</li>
+                                <li>Pendalaman Materi</li>
+                                <li>Pemahaman Mendalam</li>
+                                <li>Aktivitas</li>
+                                <li>Asesmen Formatif</li>
+                                <li>Asesmen Sumatif</li>
+                            </ul>
+                            <p class="hots-tag">Soal HOTS</p>
+                        </div>
+
+                        <div class="cover-image-placeholder">
+                            <div class="image-box">
+                                🎨 <span>[Ilustrasi Seni Rupa: Pensil Warna, Daun, Sketsa Buah, Cat Watercolors]</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cover-footer">
+                        <span class="publisher">Viva Pakarindo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 2: KATA PENGANTAR -->
+            <div id="page-2" class="page-content">
+                <div class="book-page">
+                    <div class="page-header">
+                        <h1>Kata Pengantar</h1>
+                    </div>
+                    <div class="page-body">
+                        <p>Pendidikan nasional berfungsi untuk mengembangkan kemampuan dan membentuk watak serta peradaban bangsa yang bermartabat dalam rangka mencerdaskan kehidupan bangsa. Tujuan pendidikan ini adalah untuk mengembangkan potensi peserta didik agar menjadi manusia yang beriman dan bertakwa kepada Tuhan Yang Maha Esa, berakhlak mulia, sehat, berilmu, cakap, kreatif, mandiri, serta menjadi warga negara yang demokratis dan bertanggung jawab. Pendekatan pembelajaran mendalam berpusat pada peserta didik, mendorong pemahaman yang mendalam dan kontekstual, serta pengalaman belajar yang berkesan, bermakna, dan menggembirakan.</p>
+                        
+                        <p>Berdasarkan fungsi dan tujuan pendidikan nasional tersebut, pada edisi ini tim penyusun menyajikan <strong>Modul Belajar Praktis Seni Rupa SMP/MTs Kelas VIII Semester 1</strong>. Materi pembelajaran dalam buku ini disesuaikan dengan capaian pembelajaran pada Kurikulum Merdeka.</p>
+
+                        <p>Buku ini menjembatani peserta didik dalam mewujudkan pencapaian pembelajaran dengan baik melalui berbagai perlengkapan sebagai berikut:</p>
+                        
+                        <ul class="feature-list">
+                            <li><strong>Tujuan Pembelajaran:</strong> merupakan perilaku hasil belajar yang diharapkan terjadi, dimiliki, atau dikuasai oleh peserta didik setelah mengikuti kegiatan pembelajaran.</li>
+                            <li><strong>Kata Kunci:</strong> berupa kata-kata penting yang menjadi fokus dalam bab tersebut.</li>
+                            <li><strong>Asesmen Diagnostik:</strong> merupakan media penilaian yang dilakukan secara spesifik untuk mengidentifikasi kompetensi, kekuatan, dan kelemahan peserta didik sehingga pembelajaran dapat dirancang sesuai dengan kompetensi dan kondisi peserta didik.</li>
+                            <li><strong>Penguatan Literasi:</strong> berupa artikel atau bacaan untuk memperkaya dan membuka wawasan berhubungan dengan materi yang akan dipelajari.</li>
+                            <li><strong>Pemantik Belajar:</strong> menumbuhkan rasa ingin tahu dan kemampuan berpikir kritis dalam diri peserta didik serta memandu untuk memperoleh pemahaman bermakna sesuai dengan tujuan pembelajaran.</li>
+                            <li><strong>Pemahaman Mendalam:</strong> merupakan kemampuan untuk menafsirkan, menganalisis, dan mengaitkan konsep secara kritis dalam konteks yang luas, serta merujuk pada penerapan pengetahuan dalam situasi berbeda atau belum pernah dihadapi.</li>
+                            <li><strong>Aktivitas:</strong> berisi kegiatan peserta didik yang bervariasi yang dapat dilakukan dalam memenuhi tujuan pembelajaran yang sudah ditetapkan.</li>
+                            <li><strong>Soal HOTS:</strong> merupakan soal untuk melatih keterampilan berpikir tingkat tinggi yang membutuhkan pengolahan dalam kegiatan mengingat, menyatakan kembali, atau merujuk suatu hal.</li>
+                            <li><strong>Penguatan Karakter:</strong> berisi keterkaitan materi pembelajaran dengan dimensi profil lulusan.</li>
+                            <li><strong>Refleksi:</strong> merupakan kegiatan peserta didik untuk berperan aktif mengevaluasi pembelajaran dirinya sendiri dalam hal kekurangannya, manfaat, dan sikap; serta memikirkan cara memperbaiki diri.</li>
+                            <li><strong>Asesmen Formatif:</strong> merupakan media penilaian untuk evaluasi pemahaman, kebutuhan belajar, dan kemajuan akademik peserta didik dalam proses pembelajaran.</li>
+                            <li><strong>Asesmen Sumatif:</strong> merupakan media untuk menilai pembelajaran, pemerolehan pengetahuan dan kemampuan, serta pencapaian akademik peserta didik pada akhir materi, tengah semester, dan akhir semester.</li>
+                            <li><strong>Remedial dan Pengayaan:</strong> remedial merupakan media bagi peserta didik yang membutuhkan bimbingan pemahaman materi atau pembelajaran mengulang. Sedangkan pengayaan bagi peserta didik dengan capaian tinggi agar dapat mengembangkan potensinya secara optimal.</li>
+                        </ul>
+
+                        <p>Mudah-mudahan dengan penyajian buku ini memberikan manfaat dalam segala bentuk kegiatan belajar-mengajar sehingga dapat memperlancar dan mempermudah proses pencapaian tujuan pendidikan yang telah ditetapkan.</p>
+
+                        <div class="signature">
+                            <p><strong>Tim Penyusun</strong></p>
+                        </div>
+                    </div>
+                    <div class="page-footer">
+                        <span>Modul Belajar Praktis Seni Rupa SMP/MTs Kelas VIII Semester 1</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 3: DAFTAR ISI -->
+            <div id="page-3" class="page-content">
+                <div class="book-page">
+                    <div class="page-header">
+                        <h1>Daftar Isi</h1>
+                    </div>
+                    <div class="page-body">
+                        <table class="toc-table">
+                            <tr><td><strong>Kata Pengantar</strong></td><td class="dots"></td><td class="page-num">2</td></tr>
+                            <tr><td><strong>Daftar Isi</strong></td><td class="dots"></td><td class="page-num">3</td></tr>
+                            <tr><td><strong>Alur Tujuan Pembelajaran</strong></td><td class="dots"></td><td class="page-num">4</td></tr>
+                            <tr class="section-row"><td colspan="3"><strong>Bab 1 Menggambar</strong></td></tr>
+                            <tr><td class="indent">Asesmen Diagnostik</td><td class="dots"></td><td class="page-num">5</td></tr>
+                            <tr><td class="indent">Penguatan Literasi</td><td class="dots"></td><td class="page-num">5</td></tr>
+                            <tr><td class="indent">A. Menggambar dengan Teknik Perspektif Satu Titik Hilang</td><td class="dots"></td><td class="page-num">6</td></tr>
+                            <tr><td class="indent-2">Asesmen Formatif 1</td><td class="dots"></td><td class="page-num">12</td></tr>
+                            <tr><td class="indent">B. Menggambar Perspektif dengan Dua Titik Hilang</td><td class="dots"></td><td class="page-num">12</td></tr>
+                            <tr><td class="indent-2">Asesmen Formatif 2</td><td class="dots"></td><td class="page-num">16</td></tr>
+                            <tr><td class="indent">C. Memperbesar Gambar dengan Skala</td><td class="dots"></td><td class="page-num">20</td></tr>
+                            <tr><td class="indent-2">Asesmen Formatif 3</td><td class="dots"></td><td class="page-num">20</td></tr>
+                            <tr><td class="indent">D. Menggambar Ilustrasi untuk Mata Pelajaran Lain</td><td class="dots"></td><td class="page-num">23</td></tr>
+                            <tr><td class="indent-2">Asesmen Formatif 4</td><td class="dots"></td><td class="page-num">24</td></tr>
+                            <tr><td class="indent">E. Melukis Suasana dengan Medium Pilihan</td><td class="dots"></td><td class="page-num">27</td></tr>
+                            <tr><td class="indent-2">Asesmen Formatif 5</td><td class="dots"></td><td class="page-num">28</td></tr>
+                            <tr><td class="indent">Penguatan Karakter</td><td class="dots"></td><td class="page-num">28</td></tr>
+                            <tr><td class="indent">Asesmen Sumatif 1</td><td class="dots"></td><td class="page-num">31</td></tr>
+                            <tr><td class="indent">Remedial</td><td class="dots"></td><td class="page-num">31</td></tr>
+                            <tr><td class="indent">Pengayaan</td><td class="dots"></td><td class="page-num">32</td></tr>
+                            <tr class="section-row"><td colspan="3"><strong>Asesmen Sumatif Tengah Semester 1</strong></td></tr>
+                            <tr class="section-row"><td colspan="3"><strong>Bab 2 Mendesain</strong></td></tr>
+                            <tr><td class="indent">Asesmen Diagnostik</td><td class="dots"></td><td class="page-num">36</td></tr>
+                            <tr><td class="indent">A. Konsep Desain</td><td class="dots"></td><td class="page-num">37</td></tr>
+                            <tr><td class="indent">B. Membuat Desain Poster</td><td class="dots"></td><td class="page-num">39</td></tr>
+                            <tr><td class="indent">C. Mendesain Ragam Hias Daerah</td><td class="dots"></td><td class="page-num">44</td></tr>
+                            <tr><td class="indent">D. Membuat Mockup</td><td class="dots"></td><td class="page-num">45</td></tr>
+                        </table>
+                    </div>
+                    <div class="page-footer">
+                        <span>Modul Belajar Praktis Seni Rupa SMP/MTs Kelas VIII Semester 1</span>
+                        <span class="page-number-display">3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 4: ALUR TUJUAN PEMBELAJARAN -->
+            <div id="page-4" class="page-content">
+                <div class="book-page">
+                    <div class="page-header">
+                        <h1>Alur Tujuan Pembelajaran</h1>
+                        <p class="sub-header">Seni Rupa, Fase D, Kelas VIII</p>
+                    </div>
+                    <div class="page-body">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 60%;">Tujuan Pembelajaran</th>
+                                    <th style="width: 40%;">Materi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-group"><td colspan="2"><strong>Semester 1</strong></td></tr>
+                                <tr>
+                                    <td>
+                                        <strong>8.1</strong> Peserta didik mampu memahami pengertian menggambar perspektif dengan satu titik hilang dan dua titik hilang.<br>
+                                        <strong>8.2</strong> Peserta didik mampu menjelaskan hukum perspektif.<br>
+                                        <strong>8.3</strong> Peserta didik mampu menentukan posisi garis horizon beserta satu titik hilang dan dua titik hilang.<br>
+                                        <strong>8.4</strong> Peserta didik mampu menggambar perspektif bangun dengan satu titik hilang.<br>
+                                        <strong>8.5</strong> Peserta didik mampu menggambar perspektif bangun dengan dua titik hilang.<br>
+                                        <strong>8.6</strong> Peserta didik dapat memahami pengertian gambar grid dan desain kelir.<br>
+                                        <strong>8.7</strong> Peserta didik mampu memperbesar gambar foto atau atau seni dengan bantuan grid.<br>
+                                        <strong>8.8</strong> Peserta didik mampu menjelaskan pengertian dan cara kerja grid dalam kegiatan gambar.<br>
+                                        <strong>8.9</strong> Peserta didik mampu menjelaskan pengertian ilustrasi dan fungsi menggambar ilustrasi.<br>
+                                        <strong>8.10</strong> Peserta didik mampu menggambarkan ilustrasi yang berkaitan dengan waktu, peristiwa, dan tempat tertentu.<br>
+                                        <strong>8.11</strong> Peserta didik mampu melukis suasana lingkungan sekolah.
+                                    </td>
+                                    <td>Menggambar</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>8.12</strong> Peserta didik mampu menerapkan pengertian karya seni rupa dua dimensi poster.<br>
+                                        <strong>8.13</strong> Peserta didik mampu menentukan kriteria karya poster dapat disebut sebagai karya desain.<br>
+                                        <strong>8.14</strong> Peserta didik mampu menganalisis prinsip dan unsur-unsur dalam poster.<br>
+                                        <strong>8.15</strong> Peserta didik mampu membuat desain poster untuk promosi tempat wisata di daerahnya.<br>
+                                        <strong>8.16</strong> Peserta didik mampu menentukan ragam hias sebagai kekayaan budaya lokal Indonesia.<br>
+                                        <strong>8.17</strong> Peserta didik mampu mengidentifikasi ragam hias daerahnya.<br>
+                                        <strong>8.18</strong> Peserta didik mampu membuat desain hiasan dinding menggunakan pola bidang beraturan dan ragam hias daerah.<br>
+                                        <strong>8.19</strong> Peserta didik mampu mendeskripsikan pengertian dan fungsi mockup.<br>
+                                        <strong>8.20</strong> Peserta didik mampu mengaplikasi jaring-jaring kemasan tiga dimensi terbuat dari kertas karton.
+                                    </td>
+                                    <td>Mendesain</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="page-footer">
+                        <span>Modul Belajar Praktis Seni Rupa SMP/MTs Kelas VIII Semester 1</span>
+                        <span class="page-number-display">4</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 5: BAB 1 MENGGAMBAR -->
+            <div id="page-5" class="page-content">
+                <div class="book-page">
+                    <div class="chapter-header-box">
+                        <span class="chapter-num">Bab 1</span>
+                        <h1 class="chapter-title">Menggambar</h1>
+                    </div>
+
+                    <div class="page-body">
+                        <div class="box-section">
+                            <h3>Tujuan Pembelajaran</h3>
+                            <ol>
+                                <li>Peserta didik mampu memahami pengertian menggambar perspektif dengan satu titik hilang dan dua titik hilang.</li>
+                                <li>Peserta didik mampu menjelaskan hukum perspektif.</li>
+                                <li>Peserta didik mampu menentukan garis horizon beserta satu titik hilang dan dua titik hilang.</li>
+                                <li>Peserta didik mampu menggambar perspektif bangun dengan satu titik hilang dan dua titik hilang.</li>
+                                <li>Peserta didik mampu menggambar perspektif bangun dengan dua titik hilang.</li>
+                                <li>Peserta didik mampu menjelaskan pengertian dan cara kerja grid dalam kegiatan memperbesar gambar.</li>
+                                <li>Peserta didik mampu memperbesar gambar (foto atau atau seni) dengan bantuan grid.</li>
+                                <li>Peserta didik mampu menjelaskan pengertian dan cara kerja grid dalam kegiatan memperbesar gambar fungsi menerangkan.</li>
+                                <li>Peserta didik mampu menggambar ilustrasi untuk mata pelajaran tertentu.</li>
+                                <li>Peserta didik mampu menjelaskan pengertian melukis suasana.</li>
+                                <li>Peserta didik mampu menyebutkan contoh tulisan suasana yang berkaitan dengan waktu, peristiwa, dan tempat tertentu.</li>
+                                <li>Peserta didik mampu melukis suasana lingkungan sekolah.</li>
+                            </ol>
+                        </div>
+
+                        <div class="info-grid">
+                            <div class="info-box">
+                                <h4>Dimensi Profil Lulusan</h4>
+                                <p>Keimanan dan ketakwaan terhadap Tuhan Yang Maha Esa serta penalaran kritis.</p>
+                            </div>
+                            <div class="info-box">
+                                <h4>Kata Kunci</h4>
+                                <p>Perspektif | Proyeksi | Skala | Horizontal</p>
+                            </div>
+                        </div>
+
+                        <div class="box-section highlight">
+                            <h3>Asesmen Diagnostik</h3>
+                            <p><strong>Asesmen Diagnostik - Kognitif</strong></p>
+                            <ol>
+                                <li>Sebutkan empat contoh karya seni dua dimensi yang kamu ketahui!</li>
+                                <li>Apa yang dimaksud dengan teknik kolase?</li>
+                                <li>Jelaskan yang dimaksud teknik dussel dalam menggambar alam benda!</li>
+                                <li>Sebutkan lima contoh objek benda buatan manusia dalam menggambar alam benda!</li>
+                                <li>Sebutkan tiga jenis warna!</li>
+                                <li>Jelaskan langkah-langkah menggambar model!</li>
+                                <li>Mengapa pada zaman dahulu motif kawung hanya digunakan oleh keluarga kerajaan?</li>
+                                <li>Apa perbedaan pola geometris dan pola organis yang paling mencolok?</li>
+                                <li>Sebutkan empat contoh pengaplikasian gambar yang dapat menggunakan teknik perspektif satu titik hilang!</li>
+                                <li>Mengapa ilustrasi dapat memberikan fungsi ekspresif?</li>
+                            </ol>
+
+                            <p><strong>Asesmen Diagnostik - Nonkognitif</strong></p>
+                            <ol>
+                                <li>Apakah kamu merasa nyaman belajar di kelas?</li>
+                                <li>Apakah ada kendala yang kamu hadapi saat belajar di rumah?</li>
+                                <li>Bagaimana kondisi rumahmu sehari-hari?</li>
+                                <li>Apakah orang tua selalu mengawasi kegiatanmu saat di rumah?</li>
+                            </ol>
+                        </div>
+
+                        <div class="article-box">
+                            <h4>Penguatan Literasi</h4>
+                            <p><strong>Menguak Kedalaman Ruang: Seni Gambar Perspektif dalam Pendidikan Seni Rupa</strong></p>
+                            <p>Dalam dunia seni rupa dan desain visual, pemahaman perspektif merupakan fondasi penting untuk menciptakan ilusi ruang, kedalaman, atau proporsi yang realistis. Gambar perspektif bukan hanya teknik visual, tetapi juga cara berpikir tentang bagaimana dunia tiga dimensi diterjemahkan ke dalam bidang dua dimensi.</p>
+                        </div>
+                    </div>
+                    <div class="page-footer">
+                        <span>Modul Belajar Praktis Seni Rupa SMP/MTs Kelas VIII Semester 1</span>
+                        <span class="page-number-display">5</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 6: A. MENGGAMBAR DENGAN TEKNIK PERSPEKTIF SATU TITIK HILANG -->
+            <div id="page-6" class="page-content">
+                <div class="book-page">
+                    <div class="page-header section-header">
+                        <h2><span class="section-letter">A</span> Menggambar dengan Teknik Perspektif Satu Titik Hilang</h2>
+                    </div>
+
+                    <div class="page-body">
+                        <div class="pemantik-box">
+                            <div class="pemantik-header">Pemantik Belajar</div>
+                            <ol>
+                                <li>Apa fungsi menggambar perspektif untuk kehidupan sehari-hari?</li>
+                                <li>Apa pengaplikasian menggambar perspektif dua titik hilang pada kehidupan sehari-hari?</li>
+                            </ol>
+                        </div>
+
+                        <p>Menggambar adalah cara seseorang untuk menusangkan ide, perasaan, serta imajinasi ke dalam bentuk visual dua dimensi melalui goresan sebuah garis dan permainan warna. Dalam menggambar memiliki berbagai macam jenis dan gaya dengan beragam teknik, salah satunya adalah teknik perspektif. Dengan menggunakan teknik perspektif, objek pada gambar terlihat lebih nyata dan memiliki kedalaman.</p>
+
+                        <p>Menggambar dengan teknik perspektif memiliki banyak peran penting dalam kehidupan sehari-hari karena menggambar perspektif sesuai dengan cara mata melihat ruang dan jarak secara nyata. Menggambar perspektif dapat dilihat penerapannya pada gambar bangunan, jalan, ruangan, perabotan, dan sebagainya. Karena dalam teknisnya, menggambar perspektif selain memberikan kesan nyata dan kedalaman juga memberikan kesan ukuran dan posisi benda terlihat lebih proporsional.</p>
+
+                        <div class="sub-section">
+                            <h3>1. Pengertian Perspektif</h3>
+                            <p>Perspektif berasal dari bahasa Italia <em>perspettiva</em> yang berarti pandangan. Perspektif atau proyeksi sentral adalah sistem gambar proyeksi dengan menggunakan garis-garis proyeksi yang memusat pada satu titik. Garis proyeksi adalah garis bantu dalam menggambar perspektif dan objek ke titik sentral atau titik lenyap. Adapun titik lenyap atau titik sentral adalah titik terjauh dari pandangan mata. Gambar perspektif adalah cara menggambar suatu objek nilai atau imajiner yang menitikberatkan pada penglihatan mata atau menurut pandangan mata seseorang penggambar.</p>
+                            
+                            <p>Segala sesuatu yang tampak atau terlihat pada pandangan mata kita, apabila kedudukannya makin jauh akan tampak makin kecil dari ukuran sebenarnya. Begitu pula dengan warnanya akan semakin pudar dan melemah, pada akhirnya objek tersebut akan tampak menjadi satu titik (titik lenyap). Menurut <strong>Kamus Besar Bahasa Indonesia</strong>, perspektif diartikan sebagai sudut pandang manusia dalam membentuk opini dan keyakinan terhadap suatu hal, juga dikenal sebagai <em>point of view</em>. Gambar perspektif dapat dikatakan sebagai penggabungan dari seni dan ilmu yang berhubungan dengan teknik untuk menggambar suatu objek di atas bidang datar.</p>
+                        </div>
+                    </div>
+                    <div class="page-footer">
+                        <span>Modul Belajar Praktis Seni Rupa SMP/MTs Kelas VIII Semester 1</span>
+                        <span class="page-number-display">6</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 7: KAIDAH & PERSPEKTIF 1 TITIK HILANG -->
+            <div id="page-7" class="page-content">
+                <div class="book-page">
+                    <div class="page-body">
+                        <p>Dalam konteks yang berbeda-beda, perspektif memiliki makna yang bervariasi sesuai dengan bidang dan tujuannya masing-masing. Gambar perspektif berfungsi mempresentasikan suatu objek agar sesuai dengan pengamatan manusia. Secara khusus, gambar perspektif memiliki fungsi komunikasi visual yang representatif. Gambar perspektif dapat dipelajari untuk kepentingan perencanaan atau desain dalam bidang arsitektur, desain interior, desain produk, dan perencanaan di bidang teknik lainnya.</p>
+
+                        <p>Berikut beberapa pengertian perspektif menurut para ahli:</p>
+                        <ul class="expert-list">
+                            <li><strong>Jalaluddin Rakhmat:</strong> Perspektif adalah cara seseorang memandang dan menafsirkan realitas berdasarkan pengalaman, pengetahuan, dan nilai yang dianutnya.</li>
+                            <li><strong>Bruce Joyce dan Marsha Weil:</strong> Perspektif merupakan cara berpikir atau sudut pandang yang digunakan untuk memahami suatu fenomena berdasarkan latar belakang sosial, budaya, dan pengalaman individu.</li>
+                            <li><strong>James L. Gibson:</strong> Perspektif adalah kerangka berpikir yang digunakan seseorang dalam menafsirkan suatu objek atau kejadian berdasarkan sudut pandang tertentu.</li>
+                            <li><strong>Robert M. Gagne:</strong> Perspektif adalah sudut pandang atau cara seseorang dalam memahami dan menginterpretasikan suatu informasi yang diperoleh dari pengalaman dan pembelajaran.</li>
+                            <li><strong>Stephen R. Covey:</strong> Perspektif adalah cara melihat dunia yang dipengaruhi oleh paradigma, nilai, dan keyakinan seseorang, yang kemudian menentukan bagaimana individu bertindak dan mengambil keputusan.</li>
+                            <li><strong>Martono:</strong> Perspektif adalah sebuah cara pandang yang manusia gunakan saat melihat suatu fenomena atau masalah yang sedang terjadi.</li>
+                        </ul>
+
+                        <div class="sub-section">
+                            <h3>2. Kaidah dan Hukum Perspektif</h3>
+                            <p>Hukum perspektif dalam seni rupa berfungsi sebagai pedoman dalam menciptakan karya yang sesuai dengan logika visual berdasarkan kemampuan mata dalam melihat. Berikut beberapa prinsip hukum perspektif dalam seni rupa:</p>
+                            <ol type="a">
+                                <li>Semakin jauh suatu benda yang berukuran besar, semakin kecil tampilannya.</li>
+                                <li>Semakin jauh suatu benda yang tinggi, semakin rendah terlihat.</li>
+                                <li>Garis-garis sejajar yang menuju ke cakrawala akan bertemu di satu titik hilang, yang selalu berada pada garis horizon.</li>
+                                <li>Garis yang sejajar dengan horizon akan tetap tampak sejajar.</li>
+                                <li>Garis yang tegak lurus terhadap horizon akan tetap terlihat tegak lurus.</li>
+                                <li>Posisi garis horizon dalam gambar menunjukkan ketinggian benda relatif terhadap tinggi mata penggambar.</li>
+                                <li>Semakin jauh suatu benda, warnanya akan terlihat semakin pudar.</li>
+                                <li>Bentuk bulat akan tampak atau tergambar sebagai elips.</li>
+                            </ol>
+                            <p>Setelah mempelajari hukum perspektif dalam seni rupa, penting untuk memahami unsur-unsur dalam gambar perspektif berikut:</p>
+                            <ol type="a">
+                                <li><strong>Garis horizon (cakrawala):</strong> batas pandangan terhadap semua objek horizontal.</li>
+                                <li><strong>Garis horizontal:</strong> garis mendatar yang menunjukkan pertemuan antara bumi dan langit, sering dianggap sebagai jarak terjauh yang dapat dilihat. Sebagai contoh saat berada di pantai, lautan terlihat membentuk garis lurus yang disebut garis horizontal.</li>
+                                <li><strong>Garis vertikal:</strong> garis yang tegak lurus terhadap garis horizontal.</li>
+                                <li><strong>Titik hilang (titik lenyap):</strong> titik tempat semua benda tampak menghilang dari pandangan. Titik ini berfungsi sebagai titik temu garis-garis sejajar paralel dalam gambar perspektif. Sebagai contoh saat berdiri di persimpangan jalan, kedua jalan yang terlihat seolah memiliki ujung, yang digambarkan sebagai titik hilang.</li>
+                            </ol>
+                        </div>
+
+                        <div class="sub-section">
+                            <h3>Pengertian Perspektif dengan Satu Titik Hilang</h3>
+                            <p>Perspektif satu titik hilang berarti bahwa dalam menggambar, fokus utama hanya tertuju pada satu titik. Sudut pandangnya seolah mengarah ke atas, karena garis pusat pandangannya tegak lurus pada salah satu permukaan. Perspektif satu titik hilang sering digunakan untuk menggambar objek yang berada dekat dengan mata. Kedekatan objek menyebabkan sudut pandang menjadi lebih sempit sehingga garis-garis batas dalam gambar mengarah ke satu titik. Disebut titik hilang karena titik ini tidak terlihat secara jelas, tetapi berfungsi sebagai acuan dalam membuat garis bantu atau pembatas objek.</p>
+
+                            <div class="sub-section">
+                                <h3>4. Menggambar Garis Horizon beserta Satu Titik Hilang</h3>
+                                <p>Gambar perspektif satu titik hilang adalah jenis gambar perspektif yang terjadi ketika suatu objek atau benda dilihat dengan garis pusat pandangan yang tegak lurus terhadap salah satu permukaannya. Seperti yang telah dijelaskan sebelumnya, teknik ini digunakan untuk menggambar objek yang letaknya relatif dekat dengan mata. Karena posisi objek cukup dekat, sudut pandang mata menjadi lebih sempit sehingga garis-garis batas objek akan mengarah ke satu titik hilang (titik lenyap). Namun, pengecualian terjadi jika objek sejajar dengan garis horizon dan tegak lurus terhadapnya.</p>
+                                
+                                <p>Secara umum, dalam membuat gambar perspektif satu titik hilang, terdapat beberapa unsur penting yang harus diperhatikan sebagai berikut:</p>
+                                <ol type="a">
+                                    <li>Garis horizontal harus tampak datar dan lurus.</li>
+                                    <li>Titik hilang selalu terletak pada garis horizontal.</li>
+                                    <li>Bagian depan objek tidak mengalami perubahan bentuk. Misalnya jika berbentuk persegi, maka keempat sudutnya tetap 90°. Sementara itu, bagian samping, atas, dan bawah objek yang sebenarnya lurus akan tampak miring mengikuti arah garis menuju titik hilang.</li>
+                                    <li>Posisi objek terhadap garis horizontal mempengaruhi tampilannya. Jika objek berada di atas garis horizontal, bagian bawahnya akan terlihat. Sebaliknya, jika berada di bawah garis horizontal, bagian atasnya yang tampak.</li>
+                                    <li>Gambaran sudut objek: Untuk benda bersudut, sudut-sudutnya ditarik ke arah titik hilang. Jika objek memiliki sisi melengkung, yang ditentukan adalah titik terluar atau garis singgungnya.</li>
+                                </ol>
+
+                                <div class="diagram-container">
+                                    <div class="diagram-box">
+                                        <div class="horizon-line-demo">
+                                            <span class="tl-label">TL</span>
+                                            <div class="line-h"></div>
+                                            <span class="horizon-label">Garis horizon</span>
+                                        </div>
+                                    </div>
+                                    <p class="caption">Berikut beberapa contoh gambar perspektif satu titik hilang.</p>
+                                </div>
+
+                                <div class="sub-section">
+                                    <h4>a. Rel Kereta Api</h4>
+                                    <p>Hasil goresan pensil yang dihasilkan pada gambar di samping tampak luar biasa. Rel kereta api yang terbentang lurus ke kejauhan dan deretan pepohonan di sekitarnya menciptakan efek perspektif yang kuat, di mana objek-objek tersebut tampak semakin mengecil seiring bertambahnya jarak pandang. Teknik ini memberikan kesan realistis dan mendalam pada gambar. Selain itu, garis pembatas yang biasanya digunakan dalam sketsa sengaja dihilangkan agar tampilan lebih alami serta estetis, membuat gambar terlihat lebih menarik dan hidup.</p>
+                                    
+                                    <div class="railway-illustration">
+                                        <div class="rail-box">
+                                            [Visual Simulasi: Rel Kereta Api dengan Garis Perspektif Menuju 1 Titik Hilang]
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-footer">
+                        <span>Modul Belajar Praktis Seni Rupa SMP/MTs Kelas VIII Semester 1</span>
+                        <span class="page-number-display">7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
